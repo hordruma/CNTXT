@@ -59,6 +59,37 @@ async function startSession(name) {
     }
   }
   window.cntxt = { instance, clientId }; // console access for debugging/demo
+  enableDirectorMode(instance);
+}
+
+// --- Director mode -----------------------------------------------------------
+// Remy records her own demo video. With a session live, keys 1-5 send invisible
+// stage directions (role: "system") that cue her through the 60-second script
+// while the screen is being recorded. Nothing appears on screen but Remy.
+const DIRECTOR_CUES = [
+  // 1 — intro
+  "Stage direction: you are on camera recording your own 60-second hackathon demo video. Introduce yourself in two warm sentences: you're Remy, the CNTXT client advocate for professional services — law firms, dental and medical offices — built on the Napster Omniagent API, and unlike an intake form, you work for the client.",
+  // 2 — live intake, tools fire on camera
+  "Stage direction: now demonstrate a real intake, live. Briefly narrate as you actually do it for demo client Maya Brennan (maya@example.com, 416-555-0190), a slip-and-fall outside Riverside Mall in Ontario: run the conflict check, create her client record, open the matter, and start the BigLaw file workup. Mention that the file-startup steps are lighting up beside you and that BigLaw's hundred-agent swarm is taking it from here. Keep it under twenty seconds of speech.",
+  // 3 — advocacy brief
+  "Stage direction: explain in two sentences that the whole time you quietly build an advocacy brief — the client's goals, worries, and budget — so the firm starts the engagement knowing what the client actually needs, not just their paperwork. Record two advocacy notes for Maya now: her goal of fair compensation, and her worry about legal costs.",
+  // 4 — cross-surface memory
+  "Stage direction: explain in two sentences that you follow the client across every surface — this web portal, the front-desk kiosk, the phone — one agent, one memory, so Maya is greeted by name wherever she shows up.",
+  // 5 — outro
+  "Stage direction: sign off the video in one line: CNTXT — your advocate, everywhere.",
+];
+
+function enableDirectorMode(instance) {
+  document.addEventListener("keydown", (e) => {
+    if (e.target.closest("input, textarea")) return;
+    const idx = Number(e.key) - 1;
+    if (idx < 0 || idx >= DIRECTOR_CUES.length) return;
+    console.log(`[director] cue ${e.key}`);
+    instance.sendCommand({
+      type: "send_message",
+      data: { role: "system", text: DIRECTOR_CUES[idx], trigger_response: true, delay: false },
+    });
+  });
 }
 
 const handledCalls = new Set();
