@@ -1,0 +1,13 @@
+{
+  "agentId": "ba01d1b7-a22d-4ad1-b0c2-fe96cc6f039d",
+  "companionId": "d9b40c4d-8179-4cea-bc65-0e0139c5045a",
+  "functionIds": [
+    "check_conflict",
+    "create_client",
+    "open_matter",
+    "start_file_workup",
+    "get_file_status",
+    "record_advocacy_note"
+  ],
+  "provisionedAt": "2026-06-10T02:44:15.660Z"
+}

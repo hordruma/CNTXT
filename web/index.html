@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CNTXT — Your advocate, everywhere</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <header class="masthead">
+    <div class="wordmark">CNTXT</div>
+    <div class="firm">Hartwell &amp; Cole LLP <span>· client portal</span></div>
+  </header>
+
+  <main class="stage">
+    <!-- Gate: who are you? Drives externalClientId → cross-surface memory -->
+    <section id="gate" class="gate">
+      <h1>Talk to Remy.</h1>
+      <p class="sub">
+        Remy is your advocate — not the firm's. Start here, continue at the front-desk
+        kiosk or on the phone. Remy remembers you on every surface.
+      </p>
+      <form id="gate-form">
+        <input id="client-name" type="text" placeholder="Your full name" autocomplete="name" required maxlength="60" />
+        <button type="submit">Start a conversation</button>
+      </form>
+      <p id="gate-error" class="error" hidden></p>
+    </section>
+
+    <!-- Live session: avatar + intake telemetry -->
+    <section id="session" class="session" hidden>
+      <div class="avatar-pane">
+        <div id="avatar-container"></div>
+      </div>
+      <aside class="telemetry">
+        <h2>File startup</h2>
+        <ol id="intake-steps">
+          <li data-step="check_conflict">Conflict check</li>
+          <li data-step="create_client">Client record</li>
+          <li data-step="open_matter">Matter opened</li>
+          <li data-step="start_file_workup">Back-office workup</li>
+        </ol>
+        <h2>Advocacy brief <span class="hint">what Remy is hearing</span></h2>
+        <ul id="advocacy-feed"><li class="empty">Nothing yet — just talk.</li></ul>
+        <div class="session-meta">
+          <span id="client-chip"></span>
+          <span id="backend-chip" hidden></span>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "cntxt",
+  "version": "1.0.0",
+  "description": "CNTXT — a cross-surface customer-advocate agent for professional services, built on the Napster Omniagent API with end-to-end BigLaw intake integration.",
+  "type": "module",
+  "scripts": {
+    "setup": "node scripts/setup-agent.mjs",
+    "dev": "node server/index.mjs",
+    "dev:web": "vite web",
+    "build": "vite build web",
+    "start": "npm run build && cross-env NODE_ENV=production node server/index.mjs",
+    "kiosk": "node clients/kiosk.mjs"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.5.0",
+    "@touchcastllc/napster-companion-api": "latest",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "vite": "^6.0.0"
+  },
+  "license": "MIT"
+}
